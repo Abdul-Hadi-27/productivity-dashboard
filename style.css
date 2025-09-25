@@ -172,7 +172,7 @@ header .header2 h3 {
   font-size: 28px;
 }
 .fullElem {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: #381c0a;
   padding: 40px;
@@ -597,4 +597,76 @@ nav {
   background-color: var(--sec);
   padding: 20px 10px;
   font-size: 30px;
+}
+/* .daily-goals-fullpage{
+  display: block;
+} */
+.daily-goals-fullpage h2{
+font-size: 60px;
+
+}
+
+.set {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 40px;
+  margin-top: 30px;
+  gap: 30px;
+}
+
+.set form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.daily-goals-fullpage .set form input {
+  width: 100%;
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--tri2);
+  font-size: 20px;
+}
+
+/* Goal list wrapper */
+#goalList {
+  /* list-style: none; */
+ 
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;  /* vertical stack */
+  gap: 15px; /* items ke beech gap */
+}
+
+/* Single goal item row */
+#goalList li {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between; /* text left, actions right */
+  border: 1px solid var(--pri);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+/* Checkbox + delete section */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.checkbox button {
+  padding: 8px 12px;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }

@@ -234,3 +234,61 @@ updateClock();
 
 }
 weatherFunctionality();
+const formsData = document.querySelector('.set form');
+const inputData = document.querySelector('.set form input');
+const goalList = document.querySelector('#goalList');
+
+// Local storage se goals load karo
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+// UI update karne ka function
+function renderGoals() {
+  goalList.innerHTML = ""; // purane clear
+
+  goals.forEach((goal, index) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <span style="text-decoration:${goal.completed ? "line-through" : "none"}">
+        ${goal.text}
+      </span>
+      <div class="checkbox">
+        <input type="checkbox" class="checker" ${goal.completed ? "checked" : ""}>
+        Mark as Complete
+        <button class="delete">Delete</button>
+      </div>
+    `;
+
+    // Delete button
+    listItem.querySelector('.delete').addEventListener('click', () => {
+      goals.splice(index, 1);
+      localStorage.setItem("goals", JSON.stringify(goals));
+      renderGoals();
+    });
+
+    // Checkbox
+    listItem.querySelector('.checker').addEventListener('change', (e) => {
+      goals[index].completed = e.target.checked;
+      localStorage.setItem("goals", JSON.stringify(goals));
+      renderGoals();
+    });
+
+    goalList.appendChild(listItem);
+  });
+}
+
+// Form submit → new goal add
+formsData.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const value = inputData.value.trim();
+  if (value === "") return;
+
+  goals.push({ text: value, completed: false });
+  localStorage.setItem("goals", JSON.stringify(goals));
+
+  inputData.value = "";
+  renderGoals();
+});
+
+// Initial render (jab page reload ho)
+renderGoals();
